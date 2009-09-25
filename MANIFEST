@@ -1,0 +1,22 @@
+#!mast lib meta test [A-Z]*
+lib
+lib/enumargs.rb
+meta
+meta/abstract
+meta/authors
+meta/created
+meta/homepage
+meta/license
+meta/package
+meta/project
+meta/release
+meta/repository
+meta/summary
+meta/title
+meta/version
+test
+test/test_enumerablepass.rb
+RELEASE
+LICENSE
+README
+HISTORY

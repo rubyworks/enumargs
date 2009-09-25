@@ -1,0 +1,4 @@
+This is a simple reimplementation of the core Enumerable module
+to allow its methods to take and pass-on arbitrary arguments to the
+underlying #each call. This library uses Enumerator and scans
+Enumerable so it can alwasy stay in sync.
