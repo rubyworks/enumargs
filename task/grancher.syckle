@@ -1,8 +1,4 @@
 grancher:
   service: Grancher
-  sitemap:
-    - site
-    - [doc/rdoc, rdoc]
-    - [doc/qedoc, qedoc]
   active: true
 
