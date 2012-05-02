@@ -1,100 +1,105 @@
-# Enumerable::Arguments
-#
-# Copyright (c) 2004 Thomas Sawyer
-#
-# LGPL(3) License
-#
-# This module is free software. You may use, modify, and/or redistribute this
-# software under the same terms as Ruby.
-#
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.
-
-require 'enumerator'
-
-# This is a simple reimplementation of the core Enumerable module
-# to allow the methods to take and pass-on arbitrary arguments to the
-# underlying #each call. This library uses Enumerator and scans
-# Enumerable so it can alwasy stay in sync.
-#
-# NOTE Any Enumerable method with a negative arity cannot do pass arguments
-# due to ambiguity in the argument count. So the methods #inject and #zip
-# do NOT work this way, but simply work as they do in Enumerable.
-# The method #find (and #detect) though has been made to work by removing
-# its rarely used optional parameter and providing instead an optional
-# keyword parameter (:ifnone => ...). Please keep these difference in mind.
-#
-#   require 'enumargs'
-#
-#   class T
-#     include Enumerable::Arguments
-#     def initialize(arr)
-#       @arr = arr
-#     end
-#     def each(n)
-#       arr.each{ |e| yield(e+n) }
-#     end
-#   end
-#
-#   t = T.new([1,2,3])
-#   t.collect(4)
-#   #=> [5,6,7]
-#
-module Enumerable
-module Arguments
-
-  def self.wrap_enumerable_method( methodname )
-
-    m = methodname
-    meth = Enumerable.instance_method(m)
-    arity = meth.arity
-
-    case arity <=> 0
-    when 0
-      class_eval %{
-        def #{m}( *args, &yld )
-          enum_for(:each, *args).#{m}( &yld )
-        end
-      }
-    when 1
-      class_eval %{
-        def #{m}( *args, &yld )
-          args, each_args = args[0...#{arity}], args[#{arity}..-1]
-          enum_for(:each, *each_args).#{m}( *args, &yld )
-        end
-      }
-    else
-      class_eval %{
-        def #{m}( *args, &yld )
-          enum_for(:each).#{m}( *args, &yld )
-        end
-      }
-    end
-  end
-
-  Enumerable.instance_methods(false).each do |m|
-    wrap_enumerable_method( m )
-  end
-
-  # Make exception for #find (a negative arity method) to accept
-  # keyword argument.
-  #
-  #   ObjectSpace.find(Class, :ifnone=>lambda{1}) { |e| ... }
-  #   ObjectSpace.find(Class, :ifnone=>lambda{1}) { |e| ... }
-  #
-  def find(*args, &yld)  # future use **keys ?
-    if Hash === args.last and args.last.key?(:ifnone)
-      ifnone = args.last.delete(:ifnone)
-      args.pop if args.last.empty?
-      enum_for(:each, *args).find( ifnone, &yld )
-    else
-      enum_for(:each, *args).find( &yld )
-    end
-  end
-  alias_method :detect, :find
-
+begin
+  require 'enumerator'
+rescue LoadError
 end
+
+module Enumerable
+
+  # TODO: The name of the module never felt quite right.
+  # Other options are:
+  # * `EnumerableWithArguments`
+  # * `Enumerable::WithArguments`
+  # * `ParametricEnumerable`
+  # Although the later would lead to name change for the project too.
+
+  # This is a simple reimplementation of the core Enumerable module
+  # to allow the methods to take and pass-on arbitrary arguments to the
+  # underlying #each call. This library uses Enumerator and scans
+  # Enumerable so it can always stay in sync with the current module.
+  #
+  # Note that any Enumerable method with a negative arity cannot pass arguments
+  # due to ambiguity in the argument count. So the methods #inject and #zip
+  # do NOT work this way, but simply work as they do in Enumerable.
+  # The method #find (and #detect) though has been made to work by removing
+  # its rarely used optional parameter and providing instead an optional
+  # keyword parameter (:ifnone => ...). Please keep these difference in mind.
+  #
+  #   require 'enumargs'
+  #
+  #   class T
+  #     include Enumerable::Arguments
+  #
+  #     def initialize(arr)
+  #       @arr = arr
+  #     end
+  #     def each(n)
+  #       arr.each{ |e| yield(e+n) }
+  #     end
+  #   end
+  #
+  #   t = T.new([1,2,3])
+  #   t.collect(4)
+  #   #=> [5,6,7]
+  #
+  module Arguments
+
+    def self.wrap_enumerable_method( methodname )
+
+      m = methodname
+      meth = Enumerable.instance_method(m)
+      arity = meth.arity
+
+      case arity <=> 0
+      when 0
+        class_eval %{
+          def #{m}( *args, &yld )
+            enum_for(:each, *args).#{m}( &yld )
+          end
+        }
+      when 1
+        class_eval %{
+          def #{m}( *args, &yld )
+            args, each_args = args[0...#{arity}], args[#{arity}..-1]
+            enum_for(:each, *each_args).#{m}( *args, &yld )
+          end
+        }
+      else
+        class_eval %{
+          def #{m}( *args, &yld )
+            enum_for(:each).#{m}( *args, &yld )
+          end
+        }
+      end
+    end
+
+    Enumerable.instance_methods(false).each do |m|
+      wrap_enumerable_method( m )
+    end
+
+    # Make exception for #find (a negative arity method) to accept
+    # keyword argument.
+    #
+    #   ObjectSpace.find(Class, :ifnone=>lambda{1}) { |e| ... }
+    #   ObjectSpace.find(Class, :ifnone=>lambda{1}) { |e| ... }
+    #
+    def find(*args, &yld)  # future use **keys ?
+      if Hash === args.last and args.last.key?(:ifnone)
+        ifnone = args.last.delete(:ifnone)
+        args.pop if args.last.empty?
+        enum_for(:each, *args).find( ifnone, &yld )
+      else
+        enum_for(:each, *args).find( &yld )
+      end
+    end
+    alias_method :detect, :find
+
+    # Support for #to_a.
+    #
+    def to_a(*args)
+      enum_for(:each, *args).to_a
+    end
+
+  end
 end
 
 
@@ -185,3 +190,4 @@ module EnumerableArgs
 end
 =end
 
+# Copyright (c) 2004 Rubyworks (BSD-2-Clause)

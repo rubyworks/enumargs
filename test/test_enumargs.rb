@@ -1,12 +1,10 @@
-# Test lib/facets/enumerablepass.rb
-
-require 'facets/enumerablepass.rb'
+require 'enumargs'
 require 'test/unit'
 
 # fixture
 
 class PlusArray
-  include EnumerablePass
+  include Enumerable::Arguments
   def initialize(arr)
     @arr = arr
   end

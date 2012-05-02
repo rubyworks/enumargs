@@ -1,0 +1,37 @@
+---
+email:
+  file: ~
+  subject: ~
+  mailto: 
+    - ruby-talk@ruby-lang.org
+    - rubyworks-mailinglist@googlegroups.com
+  #parts: [readme]
+
+gem:
+  gemspec: pkg/enumargs.gemspec
+
+github:
+  gh_pages: web
+
+dnote:
+  title: Source Notes
+  output: log/notes.html
+  labels: ~
+
+#yard:
+#  yardopts: true  
+#  priority: 2
+
+#qed:
+#  files: spec
+
+#qedoc:
+#  title: Lemony Testing
+#  files: spec
+#  output: SPEC.md
+
+#vclog:
+#  output: 
+#    - log/history.html
+#    - log/changes.html
+

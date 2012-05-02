@@ -1,22 +1,6 @@
-#!mast lib meta test [A-Z]*
-lib
+#!mast .ruby .yardopts bin lib test README.rdoc HISTORY.rdoc
+.ruby
 lib/enumargs.rb
-meta
-meta/abstract
-meta/authors
-meta/created
-meta/homepage
-meta/license
-meta/package
-meta/project
-meta/release
-meta/repository
-meta/summary
-meta/title
-meta/version
-test
-test/test_enumerablepass.rb
-RELEASE
-LICENSE
-README
-HISTORY
+test/test_enumargs.rb
+README.rdoc
+HISTORY.rdoc

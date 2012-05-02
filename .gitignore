@@ -1,4 +1,10 @@
-.cache
+.fire/digest
+.yardoc
+doc
 log
-doc/rdoc
-doc/ri
+pkg/*.gem
+pkg/*.gz
+tmp
+SPEC*.md
+web
+work/sandbox
