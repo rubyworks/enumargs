@@ -38,6 +38,7 @@ resources:
 - uri: http://chat.us.freenode.net/rubyworks
   label: IRC Channel
   type: chat
+categories: []
 extra: {}
 load_path:
 - lib
