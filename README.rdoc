@@ -1,7 +1,9 @@
 = Enumerable::Arguments
 
-* http://death.rubyforge.org
-* http://death.rubyforge.org/enumargs
+{Website}(http://rubyworks.github.com/enumargs)
+{Source Code}(http://github.com/rubyworks/enumargs)
+{Report Issue}(http://github.com/rubyworks/enumargs/issues)
+{Gem Package}(http://rubygems.org/gems/enumargs)
 
 
 == DESCRIPTION
@@ -17,11 +19,6 @@ Enumerable so it can always stay in sync.
 * Dynamically constructed based on Enumerable.
 * Methods #inject and #zip do not take parameters.
 * Methods #find and #detect have a modified interface.
-
-
-== RELEASE NOTES
-
-Please see RELEASE file.
 
 
 == SYNOPSIS
@@ -59,9 +56,8 @@ Windows users use 'ruby setup.rb all'.
 
 == COPYING
 
-Copyright (c) 2004 The Coding Dead <http://death.rubyforge.org>
+Copyright (c) 2004 Rubyworks
 
-This program is ditributed unser the terms of the LGPL(3) license.
+This program is ditributed unser the terms of the *BSD-2-Clause* license.
 
 See LICENSE file for details.
-
