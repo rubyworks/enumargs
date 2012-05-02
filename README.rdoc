@@ -1,8 +1,8 @@
 = Enumerable::Arguments
 
-{Website}[http://rubyworks.github.com/enumargs] )(
-{Source Code}[http://github.com/rubyworks/enumargs] )(
-{Report Issue}[http://github.com/rubyworks/enumargs/issues] )(
+{Website}[http://rubyworks.github.com/enumargs] /
+{Source Code}[http://github.com/rubyworks/enumargs] /
+{Report Issue}[http://github.com/rubyworks/enumargs/issues] /
 {Gem Package}[http://rubygems.org/gems/enumargs]
 
 
