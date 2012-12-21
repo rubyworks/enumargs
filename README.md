@@ -44,14 +44,14 @@ be in sync with the current implementation of Ruby's Enumerable class.
 
 To install with RubyGems simply open a console and type:
 
-  gem install enumargs
+    gem install enumargs
 
 Local installation requires Setup.rb (gem install setup),
 then download the tarball package and type:
 
-  tar -xvzf enumargs-2.0.0.tgz
-  cd enumargs-2.0.0
-  sudo setup.rb all
+    tar -xvzf enumargs-2.0.0.tgz
+    cd enumargs-2.0.0
+    sudo setup.rb all
 
 Windows users use 'ruby setup.rb all'.
 
