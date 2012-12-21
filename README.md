@@ -1,12 +1,12 @@
-= Enumerable::Arguments
+# Enumerable::Arguments
 
-{Website}[http://rubyworks.github.com/enumargs] /
-{Source Code}[http://github.com/rubyworks/enumargs] /
-{Report Issue}[http://github.com/rubyworks/enumargs/issues] /
-{Gem Package}[http://rubygems.org/gems/enumargs]
+[Website](http://rubyworks.github.com/enumargs) /
+[Report Issue](http://github.com/rubyworks/enumargs/issues) /
+[Gem Package](http://rubygems.org/gems/enumargs) /
+[Source Code}](http://github.com/rubyworks/enumargs)
 
 
-== DESCRIPTION
+### DESCRIPTION
 
 This is a simple reimplementation of the core Enumerable module
 to allow its methods to take and pass-on arbitrary arguments to the
@@ -14,15 +14,16 @@ underlying `#each` call. This library uses Enumerator and scans
 Enumerable so it can always stay in sync.
 
 
-== FEATURES/ISSUES
+### FEATURES/ISSUES
 
 * Dynamically constructed based on Enumerable.
 * Methods #inject and #zip do not take parameters.
 * Methods #find and #detect have a modified interface.
 
 
-== SYNOPSIS
+### SYNOPSIS
 
+```ruby
    class T
      include Enumerable::Arguments
 
@@ -38,9 +39,9 @@ Enumerable so it can always stay in sync.
    t = T.new([1,2,3])
    t.collect(4)
    #=> [5,6,7]
+```
 
-
-== HOW TO INSTALL
+### INSTALLATION
 
 To install with RubyGems simply open a console and type:
 
@@ -56,10 +57,12 @@ then download the tarball package and type:
 Windows users use 'ruby setup.rb all'.
 
 
-== COPYING
+### COPYRIGHTS
 
-Copyright (c) 2004 Rubyworks
+Enumargs is copyrighted open source software.
 
-This program is distributed under the terms of the *BSD-2-Clause* license.
+    Copyright (c) 2004 Rubyworks
+
+This program is distributed under the terms of the **BSD-2-Clause** license.
 
 See LICENSE file for details.
