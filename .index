@@ -8,11 +8,14 @@ authors:
   email: transfire@gmail.com
 organizations: []
 requirements:
-- name: rake
 - groups:
   - test
   development: true
   name: minitest
+- groups:
+  - build
+  development: true
+  name: rake
 - groups:
   - build
   development: true
@@ -37,8 +40,9 @@ repositories:
   scm: git
   uri: git://github.com/rubyworks/enumargs.git
 categories: []
-load_path:
-- lib
+paths:
+  load:
+  - lib
 copyrights:
 - holder: Rubyworks
   year: '2004'
@@ -55,4 +59,4 @@ description: ! 'This is a simple reimplementation of the core Enumerable module
   underlying #each call. This library uses Enumerator and scans
 
   Enumerable so it can alwasy stay in sync.'
-date: '2012-12-08'
+date: '2012-12-21'

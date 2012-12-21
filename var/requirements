@@ -1,4 +1,4 @@
 ---
-- rake
 - minitest (test)
+- rake     (build)
 - detroit  (build)
