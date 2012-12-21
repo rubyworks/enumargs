@@ -3,25 +3,24 @@
 [Website](http://rubyworks.github.com/enumargs) /
 [Report Issue](http://github.com/rubyworks/enumargs/issues) /
 [Gem Package](http://rubygems.org/gems/enumargs) /
-[Source Code}](http://github.com/rubyworks/enumargs)
+[Source Code](http://github.com/rubyworks/enumargs)
+( [![Build Status](https://secure.travis-ci.org/rubyworks/enumargs.png)](http://travis-ci.org/rubyworks/enumargs) )
 
-
-### DESCRIPTION
 
 This is a simple reimplementation of the core Enumerable module
-to allow its methods to take and pass-on arbitrary arguments to the
+to allow its methods to take and pass on arbitrary arguments to the
 underlying `#each` call. This library uses Enumerator and scans
-Enumerable so it can always stay in sync.
+Enumerable to dynamically construct its methods, so it should always
+be in sync with the current implementation of Ruby's Enumerable class.
 
 
-### FEATURES/ISSUES
+## Limitations
 
-* Dynamically constructed based on Enumerable.
-* Methods #inject and #zip do not take parameters.
-* Methods #find and #detect have a modified interface.
+* Methods `#inject` and `#zip` cannot use pass-on parameters, b/c they already have their own.
+* Methods `#find` and `#detect` have a modified interface so they can support pass-on parameters.
 
 
-### SYNOPSIS
+## Synopsis
 
 ```ruby
    class T
@@ -41,7 +40,7 @@ Enumerable so it can always stay in sync.
    #=> [5,6,7]
 ```
 
-### INSTALLATION
+## Installation
 
 To install with RubyGems simply open a console and type:
 
@@ -57,7 +56,7 @@ then download the tarball package and type:
 Windows users use 'ruby setup.rb all'.
 
 
-### COPYRIGHTS
+## Copyrights
 
 Enumargs is copyrighted open source software.
 
