@@ -1,6 +1,7 @@
-#!mast .ruby .yardopts bin lib test README.rdoc HISTORY.rdoc
-.ruby
+#!mast .index .ruby .yardopts bin demo lib share test *.md *.rdoc *.txt [A-Z][A-Z]*
+.index
 lib/enumargs.rb
 test/test_enumargs.rb
-README.rdoc
-HISTORY.rdoc
+HISTORY.md
+README.md
+LICENSE
