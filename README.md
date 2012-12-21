@@ -11,7 +11,7 @@ This is a simple reimplementation of the core Enumerable module
 to allow its methods to take and pass on arbitrary arguments to the
 underlying `#each` call. This library uses Enumerator and scans
 Enumerable to dynamically construct its methods, so it should always
-be in sync with the current implementation of Ruby's Enumerable class.
+be in sync with the current implementation of Ruby's Enumerable module.
 
 
 ## Limitations
@@ -36,8 +36,8 @@ be in sync with the current implementation of Ruby's Enumerable class.
    end
 
    t = T.new([1,2,3])
-   t.collect(4)
-   #=> [5,6,7]
+
+   t.map(4)  #=> [5,6,7]
 ```
 
 ## Installation
